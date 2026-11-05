@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Play Iron Hero 3D — City Defender</title>
+<meta name="description" content="Play Iron Hero 3D in your browser. Fly through the city, fire repulsors, battle Ultra Bots and defeat the giant boss Ultronium.">
+<link rel="canonical" href="https://ironhero3d.vercel.app/play.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#071320">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Play Iron Hero 3D — City Defender">
+<meta property="og:description" content="Deploy your armored hero and defend the city against Ultra Bots and Ultronium.">
+<meta property="og:url" content="https://ironhero3d.vercel.app/play.html">
+<meta name="twitter:card" content="summary">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="styles/game.css"></head><body>
+<div id="audio-controls"><button id="music-toggle" aria-pressed="false">Mute music</button><button id="sfx-toggle">Effects: on</button><span id="music-status">soundtrack.mp3 · loops automatically</span></div>
+<div id="hud"><div id="boss-hud" hidden style="position:absolute;top:20px;left:35%;width:30%;text-align:center;color:#ffab63">ULTRONIUM <span id="boss-health"></span><div class="bar" style="width:100%"><i id="boss-fill" style="background:#ff663a"></i></div></div>
+ <div id="tl">ARMOR<div class="bar" id="hp"><i></i></div>ARC ENERGY<div class="bar" id="en"><i></i></div></div>
+ <div id="tr">WAVE <b id="wv">1</b><br>SCORE <b id="sc">0</b><br>ULTRA BOTS <b id="ec" style="color:var(--rd)">0</b></div>
+ <canvas id="radar" width="140" height="140"></canvas>
+ <div id="weapon-status" style="position:absolute;top:57%;width:100%;text-align:center;font-size:11px;color:#78eaff">REPULSOR READY</div><div id="ret"></div><div id="target-marker" hidden></div><div id="hit-marker">×</div><div id="mission-status">SUIT ONLINE</div><div id="ability-status"></div><div id="bn"></div><div id="fl"></div>
+ <div id="keys">WASD move · Mouse aim · Click: fire · Hold: continuous stream<br>Space jump / fly up · C down · Shift boost · F fly toggle<br>Q missiles · E repulsor nova</div>
+</div>
+<div id="ov"><div class="menu-shell"><a href="/" style="color:#71cbe0;font-size:12px">← Back to Iron Hero 3D</a><div class="eyebrow">DEFENSE INITIATIVE / MARK IV</div><h1>IRON HERO</h1><h2>CITY DEFENDER</h2>
+<p id="menu-description">Own the skyline. Protect the streets. Take down Ultronium.</p>
+<div class="mission-cards"><div><b>01</b><strong>DEFEND THE CITY</strong><span>20 drones. Then twice as many.</span></div><div><b>02</b><strong>BREAK THE TITAN</strong><span>Ultronium awaits after every wave.</span></div><div><b>03</b><strong>MASTER THE SUIT</strong><span>Flight, repulsors, missiles and nova.</span></div></div>
+<div class="menu-options"><label>GRAPHICS <select id="quality"><option value="performance">Performance</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><div>PERSONAL BEST <strong id="best-score">0</strong></div></div>
+<button class="go" id="gt">DEPLOY SUIT →</button><button id="restart-game" hidden>RESTART MISSION</button>
+<details><summary>CONTROLS &amp; FLIGHT GUIDE</summary><p>WASD move · Mouse aim · Hold click fire · F flight · Space ascend / jump · C descend · Shift boost · Q missiles · E nova · Esc / P pause. Mobile: left joystick moves, drag the right side to aim. Your armor slowly regenerates.</p></details>
+</div></div>
+<div id="touch-controls"><div id="look-pad" aria-label="Drag to aim"></div><div id="move-stick" aria-label="Movement joystick"><span id="stick-knob"></span></div><div id="touch-actions"><button data-fire="true">FIRE</button><button data-key="KeyF">FLY</button><button data-key="Space">UP / JUMP</button><button data-key="KeyC">DOWN</button><button data-key="ShiftLeft">BOOST</button><button data-key="KeyQ">MISSILES</button><button data-key="KeyE">NOVA</button></div><button id="pause-game">PAUSE</button></div>
+<div id="mobile-gate" hidden><h2>LANDSCAPE · FULLSCREEN</h2><p id="gate-text"></p><button id="enter-fullscreen">ENTER FULLSCREEN</button></div>
+<noscript><div style="position:fixed;inset:0;z-index:200;background:#071320;color:white;padding:3rem"><h1>JavaScript is needed to play</h1><p>The 3D game needs JavaScript and WebGL. You can still <a href="/" style="color:cyan">read about Iron Hero 3D and its controls</a>.</p></div></noscript>
+<script src="vendor/three.min.js"></script>
+<script type="module" src="src/game.js"></script>
+</body></html>

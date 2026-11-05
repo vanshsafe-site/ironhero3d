@@ -33,3 +33,11 @@ The full day/evening/night cycle lasts two minutes. Building damage is cosmetic,
 ## Verification
 
 Run `npm test` with Node.js 22+. Tests use actual bundled Three.js scene objects with mocked browser/WebGL I/O. They cover continuous shot collision, walls/roofs/curbs, wave counts, boss transitions, restart state and rig setup. These tests do **not** validate rendering, audio output, or physical touch devices. Browser testing is still required for visual quality and measured frame rate.
+
+## Public website, SEO and Vercel
+
+`index.html` is the public landing page. Its game description, controls, FAQs and play links are ordinary HTML, visible with JavaScript disabled. The game now lives at `/play.html`; all game asset paths are unchanged. The home page has descriptive metadata, Open Graph / Twitter tags, a canonical URL and VideoGame JSON-LD. `robots.txt` and `sitemap.xml` use `https://ironhero3d.vercel.app`.
+
+Run `npm run build` to create `dist/` from an explicit allowlist of public files. `vercel.json` sets Framework to Other, the build command to `npm run build`, and output directory to `dist`. Import or redeploy this repository in the existing **ironhero3d** Vercel project, with this folder as its Root Directory. No Python runtime or server process is needed on Vercel. The Python command remains only a local development convenience.
+
+After deploying, check `/`, `/play.html`, `/robots.txt` and `/sitemap.xml` on the production domain. Ensure production is publicly accessible (not behind deployment authentication), then submit `https://ironhero3d.vercel.app/sitemap.xml` in Google Search Console. Crawlable pages make indexing possible; indexing and search ranking are not guaranteed. Update the canonical URLs, sitemap and JSON-LD if the domain changes.

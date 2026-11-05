@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<title>Iron Hero: City Defender</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="stylesheet" href="styles/game.css"></head><body>
-<div id="audio-controls"><button id="music-toggle" aria-pressed="false">Mute music</button><button id="sfx-toggle">Effects: on</button><span id="music-status">soundtrack.mp3 · loops automatically</span></div>
-<div id="hud"><div id="boss-hud" hidden style="position:absolute;top:20px;left:35%;width:30%;text-align:center;color:#ffab63">ULTRONIUM <span id="boss-health"></span><div class="bar" style="width:100%"><i id="boss-fill" style="background:#ff663a"></i></div></div>
- <div id="tl">ARMOR<div class="bar" id="hp"><i></i></div>ARC ENERGY<div class="bar" id="en"><i></i></div></div>
- <div id="tr">WAVE <b id="wv">1</b><br>SCORE <b id="sc">0</b><br>ULTRA BOTS <b id="ec" style="color:var(--rd)">0</b></div>
- <canvas id="radar" width="140" height="140"></canvas>
- <div id="weapon-status" style="position:absolute;top:57%;width:100%;text-align:center;font-size:11px;color:#78eaff">REPULSOR READY</div><div id="ret"></div><div id="target-marker" hidden></div><div id="hit-marker">×</div><div id="mission-status">SUIT ONLINE</div><div id="ability-status"></div><div id="bn"></div><div id="fl"></div>
- <div id="keys">WASD move · Mouse aim · Click: fire · Hold: continuous stream<br>Space jump / fly up · C down · Shift boost · F fly toggle<br>Q missiles · E repulsor nova</div>
-</div>
-<div id="ov"><div class="menu-shell"><div class="eyebrow">DEFENSE INITIATIVE / MARK IV</div><h1>IRON HERO</h1><h2>CITY DEFENDER</h2>
-<p id="menu-description">Own the skyline. Protect the streets. Take down Ultronium.</p>
-<div class="mission-cards"><div><b>01</b><strong>DEFEND THE CITY</strong><span>20 drones. Then twice as many.</span></div><div><b>02</b><strong>BREAK THE TITAN</strong><span>Ultronium awaits after every wave.</span></div><div><b>03</b><strong>MASTER THE SUIT</strong><span>Flight, repulsors, missiles and nova.</span></div></div>
-<div class="menu-options"><label>GRAPHICS <select id="quality"><option value="performance">Performance</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><div>PERSONAL BEST <strong id="best-score">0</strong></div></div>
-<button class="go" id="gt">DEPLOY SUIT →</button><button id="restart-game" hidden>RESTART MISSION</button>
-<details><summary>CONTROLS &amp; FLIGHT GUIDE</summary><p>WASD move · Mouse aim · Hold click fire · F flight · Space ascend / jump · C descend · Shift boost · Q missiles · E nova · Esc / P pause. Mobile: left joystick moves, drag the right side to aim. Your armor slowly regenerates.</p></details>
-</div></div>
-<div id="touch-controls"><div id="look-pad" aria-label="Drag to aim"></div><div id="move-stick" aria-label="Movement joystick"><span id="stick-knob"></span></div><div id="touch-actions"><button data-fire="true">FIRE</button><button data-key="KeyF">FLY</button><button data-key="Space">UP / JUMP</button><button data-key="KeyC">DOWN</button><button data-key="ShiftLeft">BOOST</button><button data-key="KeyQ">MISSILES</button><button data-key="KeyE">NOVA</button></div><button id="pause-game">PAUSE</button></div>
-<div id="mobile-gate" hidden><h2>LANDSCAPE · FULLSCREEN</h2><p id="gate-text"></p><button id="enter-fullscreen">ENTER FULLSCREEN</button></div>
-<script src="vendor/three.min.js"></script>
-<script type="module" src="src/game.js"></script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iron Hero 3D — Free Superhero Browser Game</title>
+<meta name="description" content="Play Iron Hero 3D, a free superhero browser game. Fly across a living city, fight Ultra Bots, and challenge Ultronium with repulsors, missiles and nova attacks.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#071320">
+<link rel="canonical" href="https://ironhero3d.vercel.app/">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles/landing.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Iron Hero 3D">
+<meta property="og:title" content="Iron Hero 3D — Defend the City">
+<meta property="og:description" content="Suit up, take flight and battle Ultra Bots and the giant Ultronium boss. A free 3D action game in your browser.">
+<meta property="og:url" content="https://ironhero3d.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Iron Hero 3D — Defend the City">
+<meta name="twitter:description" content="A free 3D superhero browser game with flight, repulsors, city battles and giant boss fights.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"Iron Hero 3D","alternateName":"Iron Hero: City Defender","url":"https://ironhero3d.vercel.app/","description":"A free 3D superhero browser game featuring flight, city defense, Ultra Bot waves and the Ultronium boss.","genre":["Action","Superhero"],"gamePlatform":"Web browser","applicationCategory":"Game","operatingSystem":"Any operating system with a compatible WebGL browser","playMode":"SinglePlayer","isAccessibleForFree":true,"inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","url":"https://ironhero3d.vercel.app/play.html"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><a class="brand" href="/" aria-label="Iron Hero 3D home"><img src="/assets/icon.svg" width="36" height="36" alt="">IRON HERO <span>3D</span></a><nav aria-label="Main navigation"><a href="#features">The game</a><a href="#controls">Controls</a><a class="small-button" href="/play.html">Play now ↗</a></nav></header>
+<main id="main">
+<section class="hero" aria-labelledby="title"><div class="hero-copy"><p class="eyebrow">SUIT ONLINE · CITY DEFENSE INITIATIVE</p><h1 id="title">IRON HERO <span>3D</span></h1><p class="tagline">The city needs a hero.<br>Take to the sky.</p><p class="intro">Pilot an armored superhero through a living 3D city. Unleash repulsors, outrun enemy fire and face Ultronium, the towering robot waiting at the end of every wave.</p><a class="button" href="/play.html">PLAY FREE IN YOUR BROWSER <span>→</span></a><p class="fine">No download · Single player · Desktop &amp; supported mobile browsers</p></div><div class="reactor" aria-hidden="true"><div class="orbit"></div><div class="core"><img src="/assets/icon.svg" alt="" width="160" height="160"></div><span>ARC REACTOR / ONLINE</span></div></section>
+<section id="features"><p class="eyebrow">YOUR SUIT. YOUR SKYLINE.</p><h2>A city-sized superhero playground</h2><div class="cards"><article><span class="number">01 / FLIGHT</span><h3>Own the skyline</h3><p>Launch from the streets, hover above rooftops and boost across the city. Your hero banks into flight with animated armor and palm thrusters.</p></article><article><span class="number">02 / COMBAT</span><h3>Make every shot count</h3><p>Fire alternating repulsors, launch homing missiles or unleash a nova. Weapons consume arc energy, so give the suit time to recharge.</p></article><article><span class="number">03 / BOSS BATTLES</span><h3>Bring down Ultronium</h3><p>Clear 20 Ultra Bots, then defeat the giant armored boss. Each new wave doubles the drone count and increases the challenge.</p></article></div><p class="world-note">Explore streets filled with cars and fleeing civilians, reflective building glass, impact particles and a two-minute day, sunset and night cycle.</p></section>
+<section id="controls" class="guide"><div><p class="eyebrow">FLIGHT BRIEFING</p><h2>How to play Iron Hero 3D</h2><p>Open the game and choose <strong>Deploy Suit</strong>. Defend the city from Ultra Bots, defeat Ultronium and survive the next wave. Armor regenerates slowly; energy powers your weapons and boost.</p><p>On mobile, use the left joystick to move and drag the right side to aim. Labeled buttons control firing, flight and abilities. Mobile play requires landscape and a browser that supports fullscreen.</p></div><dl class="controls"><div><dt>W A S D</dt><dd>Move</dd></div><div><dt>Mouse / click</dt><dd>Aim / fire repulsors</dd></div><div><dt>F</dt><dd>Toggle flight</dd></div><div><dt>Space / C</dt><dd>Jump or ascend / descend</dd></div><div><dt>Shift</dt><dd>Boost</dd></div><div><dt>Q / E</dt><dd>Missiles / nova</dd></div><div><dt>P / Escape</dt><dd>Pause</dd></div></dl></section>
+<section class="faq"><p class="eyebrow">MISSION QUESTIONS</p><h2>Before you deploy</h2><details><summary>Is Iron Hero 3D free to play?</summary><p>Yes. Play directly in your browser without a download or account.</p></details><details><summary>Can I play on a phone?</summary><p>Touch controls are available. Use a WebGL-capable browser with fullscreen support and rotate to landscape. Some mobile browsers do not support the fullscreen requirement.</p></details><details><summary>What if the game runs slowly?</summary><p>Select Performance in the game’s graphics settings. This reduces render resolution and reflection update frequency.</p></details><details><summary>How do waves and bosses work?</summary><p>The first wave has 20 Ultra Bots, the second has 40, then 80 and so on. Drones arrive in groups of up to 20. Ultronium appears after you defeat all drones in a wave.</p></details></section>
+<section class="deploy"><h2>Ready to defend the city?</h2><a class="button" href="/play.html">DEPLOY IRON HERO →</a></section>
+</main>
+<footer><a class="brand" href="/">IRON HERO 3D</a><p>A single-player superhero browser game.</p><a href="/play.html">Play the game</a></footer>
 </body></html>
